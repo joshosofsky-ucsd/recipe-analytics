@@ -40,6 +40,7 @@ I conducted the following data-cleaning steps in order to make my data more effi
    - Both data sets are now combined into one data frame via their shared `id` and `recipe_id` columns which now allows for seamless access to each recipe's ratings
 2. Checked the data types of each column
    - I did this to assess which columns need to be further cleaned to better answer my research question
+     
       | Column | Data Type |
       | ----------- | ----------- |
       | `name` | object |
@@ -58,6 +59,7 @@ I conducted the following data-cleaning steps in order to make my data more effi
       | `date` | object |
       | `rating` | float64 |
       | `review` | object |
+
 3. Filled all ratings with a rating of 0 with np.nan
    - Ratings can only go as low as 1 and as high as 5 so ratings of 0 indicate a missing value rather than an actual rating of 0
 4. Added the `avg_rating` column
@@ -72,6 +74,7 @@ I conducted the following data-cleaning steps in order to make my data more effi
    - This column states the proportion of calories in the recipe that derive from a protein source. To calculate this, I divided the values in the `protein` column by 100%, multiplied them by 50 grams of protein ([food.com](https://www.food.com/) states that 50 grams of protein is the 100% PDV), multiplied them by 4 since there are 4 calories in 1 gram of protein, and finally divide by the total amount of calories in the recipe
   
 ### Resulting DataFrame
+
 | Column | Data Type |
 | ----------- | ----------- |
 | `name` | object |
