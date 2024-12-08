@@ -102,3 +102,11 @@ I conducted the following data-cleaning steps in order to make my data more effi
 | `prop_protein` | float64 |
 
 This cleaned DataFrame contains 234429 rows and 26 columns. Below are the first 5 rows of this new DataFrame named `clean_recipes` with only relevant columns:
+
+| name                                 |     id |   minutes | submitted           |   rating |   avg_rating |   calories |   protein | is_labeled_vegetarian   |   prop_protein |
+|:-------------------------------------|-------:|----------:|:--------------------|---------:|-------------:|-----------:|----------:|:------------------------|---------------:|
+| 1 brownies in the world    best ever | 333281 |        40 | 2008-10-27 00:00:00 |        4 |            4 |      138.4 |         3 | False                   |      0.0433526 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 | 2011-04-11 00:00:00 |        5 |            5 |      595.1 |        13 | False                   |      0.0436901 |
+| 412 broccoli casserole               | 306168 |        40 | 2008-05-30 00:00:00 |        5 |            5 |      194.8 |        22 | False                   |      0.225873  |
+| 412 broccoli casserole               | 306168 |        40 | 2008-05-30 00:00:00 |        5 |            5 |      194.8 |        22 | False                   |      0.225873  |
+| 412 broccoli casserole               | 306168 |        40 | 2008-05-30 00:00:00 |        5 |            5 |      194.8 |        22 | False                   |      0.225873  |
