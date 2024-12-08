@@ -73,7 +73,7 @@ I conducted the following data-cleaning steps in order to make my data more effi
 8. Added the `prop_protein` column
    - This column states the proportion of calories in the recipe that derive from a protein source. To calculate this, I divided the values in the `protein` column by 100%, multiplied them by 50 grams of protein ([food.com](https://www.food.com/) states that 50 grams of protein is the 100% PDV), multiplied them by 4 since there are 4 calories in 1 gram of protein, and finally divide by the total amount of calories in the recipe
   
-### Resulting DataFrame
+#### Resulting DataFrame
 
 | Column | Data Type |
 | ----------- | ----------- |
@@ -113,3 +113,14 @@ This cleaned DataFrame contains 234429 rows and 26 columns. Below are the first 
 | 412 broccoli casserole               | 306168 |        40 | 2008-05-30 00:00:00 |        5 |            5 |      194.8 |        22 | False                   |      0.225873  |
 | 412 broccoli casserole               | 306168 |        40 | 2008-05-30 00:00:00 |        5 |            5 |      194.8 |        22 | False                   |      0.225873  |
 | 412 broccoli casserole               | 306168 |        40 | 2008-05-30 00:00:00 |        5 |            5 |      194.8 |        22 | False                   |      0.225873  |
+
+### Univariate Analysis
+
+In order to better understand my research question, I analyzed the distribution of the proportion of protein in a recipe. As you can see in the below histogram, the distribution is heavily skewed right suggesting that most recipes on ([food.com](https://www.food.com/) have a low proportion of protein and that as the proportion of protein in a recipe increases, the amount of recipes on ([food.com](https://www.food.com/) decreases. 
+
+<iframe
+  src="assets/univariate-analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
