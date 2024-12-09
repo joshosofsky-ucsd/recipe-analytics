@@ -151,3 +151,28 @@ While conducting my research, the relationship between the number of ingredients
 | 37            | 0.01              | 0.01                | 0.01             | 0.01             |
 
 Upon closer inspection of this pivot table, there seems to be a minor relationship between the two variables. The mean, median, and minimum proportions of protein seem to increase steadily as the number of ingredients increases then decrease sharply while the maximum has an overall trend of decreasing steadily. This suggests that there is a slight relationship  between the number of ingredients in a recipe and that recipe's proportion of protein signifying that protein could be a primary aspect of a recipe's ingredient list and, therefore, quantity. 
+
+## Assessment of Missingness
+
+Of the columns in `clean_recipes`, three of them contain missing data: `date`, `rating`, `review`. Due to this, I decided to assess the missingness of these columns
+
+### NMAR Analysis
+
+I believe that the `review` column is NMAR because whether or not someone decides to leave a review on a recipe likely hinges on whether said person had a strong reaction (positive or negative) to the recipe. For instance, if someone used a recipe and found that they really enjoyed it, they would be more likely to go out of their way to write up a review and post it. Conversely, if someone used a recipe and found that they really didn't enjoy it, they could also be more motivated to go out of their way to write up a review in order to warn other potential recipe users. 
+
+### Missingness Dependency
+
+Moving on, I decided to assess the missingness of the `rating` column. I did this by conducting permutation tests to evaluate whether `rating` could be MAR on `prop_protein` or on `n_ingredients` 
+
+#### Proportion of Protein and Rating
+
+**Null Hypothesis:** The missingness of ratings does not depend on the proportion of protein in the recipe
+
+**Alternative Hypothesis:** The missingness of ratings does depend on the proportion of protein in the recipe
+
+**Test Statistic:** The absolute difference of mean in the proportion of protein of the distribution of the group without missing ratings and the distribution of the group with missing ratings
+
+**Significance Level:** 0.05
+
+I ran the permutation test for this relationship by first adding a column stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
+
