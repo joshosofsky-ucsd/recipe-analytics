@@ -124,6 +124,7 @@ In order to better understand my research question, I analyzed the distribution 
   height="600"
   frameborder="0"
 ></iframe>
+
 ### Bivariate Analysis
 
 In order to better understand the relationship between the proportion of protein in a recipe and a recipe's rating, I analyzed the distribution between the rating a recipe received conditioned on whether or not [food.com](https://www.food.com/) labeled the recipe as 'vegetarian'. As you can see in the below bar plot, the distribution shows that recipes with ratings of 3 and 1 are more likely to be non-vegetarian recipes, recipes with a rating of 4 are more likely to be vegetarian recipes, and recipes with ratings of 5 and 2 are nearly equal in their probability of being and not being a vegetarian recipe. 
