@@ -135,3 +135,19 @@ In order to better understand the relationship between the proportion of protein
   height="600"
   frameborder="0"
 ></iframe>
+
+### Interesting Aggregates
+
+While conducting my research, the relationship between the number of ingredients in a recipe and the proportion of protein in a recipe began to intrigue me. To better understand this, I grouped my data by number of ingredients and calculated the mean, median, minimum, and maximum proportion of protein for each as seen below.
+
+| n_ingredients | mean_prop_protein | median_prop_protein | min_prop_protein | max_prop_protein |
+|:--------------|:------------------|:--------------------|:-----------------|:-----------------|
+| 1             | 0.11              | 0.10                | 0.00             | 0.35             |
+| 2             | 0.12              | 0.07                | 0.00             | 0.83             |
+| 3             | 0.10              | 0.06                | 0.00             | 0.87             |
+| ...           | ...               | ...                 | ...              | ...              |
+| 32            | 0.19              | 0.18                | 0.18             | 0.21             |
+| 33            | 0.05              | 0.05                | 0.05             | 0.05             |
+| 37            | 0.01              | 0.01                | 0.01             | 0.01             |
+
+Upon closer inspection of this pivot table, there seems to be a minor relationship between the two variables. The mean, median, and minimum proportions of protein seem to increase steadily as the number of ingredients increases then decrease sharply while the maximum has an overall trend of decreasing steadily. This suggests that there is a slight relationship  between the number of ingredients in a recipe and that recipe's proportion of protein signifying that protein could be a primary aspect of a recipe's ingredient list and, therefore, quantity. 
