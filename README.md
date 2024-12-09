@@ -116,10 +116,21 @@ This cleaned DataFrame contains 234429 rows and 26 columns. Below are the first 
 
 ### Univariate Analysis
 
-In order to better understand my research question, I analyzed the distribution of the proportion of protein in a recipe. As you can see in the below histogram, the distribution is heavily skewed right suggesting that most recipes on ([food.com](https://www.food.com/) have a low proportion of protein and that as the proportion of protein in a recipe increases, the amount of recipes on ([food.com](https://www.food.com/) decreases. 
+In order to better understand my research question, I analyzed the distribution of the proportion of protein in a recipe. As you can see in the below histogram, the distribution quickly increases then decreases peaking at around 10% proportion protein with an overall shape that is heavily skewed right suggesting that most recipes on ([food.com](https://www.food.com/) have a low proportion of protein and that as the proportion of protein in a recipe increases, the amount of recipes on ([food.com](https://www.food.com/) decreases. 
 
 <iframe
   src="assets/univariate-analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Bivariate Analysis
+
+In order to better understand the relationship between the proportion of protein in a recipe and a recipe's rating, I analyzed the distribution between the rating a recipe received conditioned on whether or not ([food.com](https://www.food.com/) labeled the recipe as 'vegetarian'. As you can see in the below bar plot, the distribution shows that recipes with ratings of 3 and 1 are more likely to be non-vegetarian recipes, recipes with a rating of 4 are more likely to be vegetarian recipes, and recipes with ratings of 5 and 2 are nearly equal in their probability of being and not being a vegetarian recipe. 
+
+<iframe
+  src="assets/bivariate-analysis.html"
   width="800"
   height="600"
   frameborder="0"
