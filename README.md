@@ -176,3 +176,9 @@ Moving on, I decided to assess the missingness of the `rating` column. I did thi
 
 I ran the permutation test for this relationship by first adding a column stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
 
+<iframe
+  src="assets/permutation_test_histogram_1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
