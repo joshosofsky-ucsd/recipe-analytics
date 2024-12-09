@@ -172,6 +172,8 @@ Moving on, I decided to assess the missingness of the `rating` column. I did thi
 
 **Test Statistic:** The absolute difference of mean in the proportion of protein of the distribution of the group without missing ratings and the distribution of the group with missing ratings
 
+**Observed Statistic:** 0.0039
+
 **Significance Level:** 0.05
 
 I ran the permutation test for this relationship by first adding a column stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
@@ -182,3 +184,19 @@ I ran the permutation test for this relationship by first adding a column statin
   height="600"
   frameborder="0"
 ></iframe>
+
+**P-Value:** 0.0
+
+As can be seen by the observed statistics' location on the distribution of the null values marked by the red line and the calculated p-value, I **reject the null hypothesis**. I believe that the missingness of the `rating` column is MAR on the `prop_protein` column. 
+
+#### Number of Ingredients and Rating
+
+**Null Hypothesis:** The missingness of ratings does not depend on the number of ingredients in the recipe
+
+**Alternative Hypothesis:** The missingness of ratings does depend on the number of ingredients in the recipe
+
+**Test Statistic:** The absolute difference of mean in the number of ingredients of the distribution of the group without missing ratings and the distribution of the group with missing ratings
+
+**Observed Statistic:** 0.0181
+
+**Significance Level:** 0.05
