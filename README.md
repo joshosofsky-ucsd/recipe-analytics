@@ -116,7 +116,7 @@ This cleaned DataFrame contains 234429 rows and 26 columns. Below are the first 
 
 ### Univariate Analysis
 
-In order to better understand my research question, I analyzed the distribution of the proportion of protein in a recipe. As you can see in the below histogram, the distribution quickly increases then decreases peaking at around 10% proportion protein with an overall shape that is heavily skewed right suggesting that most recipes on ([food.com](https://www.food.com/) have a low proportion of protein and that as the proportion of protein in a recipe increases, the amount of recipes on ([food.com](https://www.food.com/) decreases. 
+In order to better understand my research question, I analyzed the distribution of the proportion of protein in a recipe. As you can see in the below histogram, the distribution quickly increases then decreases peaking at around 10% proportion protein with an overall shape that is heavily skewed right suggesting that most recipes on [food.com](https://www.food.com/) have a low proportion of protein and that as the proportion of protein in a recipe increases, the amount of recipes on [food.com](https://www.food.com/) decreases. 
 
 <iframe
   src="assets/univariate-analysis.html"
@@ -229,3 +229,80 @@ Circling back to my original research question, my main goal with this research 
 **Significance Level:** 0.05
 
 I decided not to run a hypothesis test because I don't have any information on a population to be sampled from and instead decided to run a permutation test because I'm more interested in determining whether the two distributions of high and low protein come from the same population. My prediction is that recipes with a higher proportion of protein are rated lower than recipes with a lower proportion since I believe that people may be wary of any adverse health effects that could arise from consuming too many protein-rich meals leading them to rate the recipe lower. For the test statistic, I opted to use the difference in the mean of the `rating` column for each distribution since my alternative hypothesis is directional and I'm concerned with determining whether low protein recipes typically get rated higher. 
+
+<iframe
+  src="assets/hypothesis_testing_histogram.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+**P-Value:** 0.0
+
+#### Conclusion of Permutation Test
+
+As can be seen by the observed statistics' location on the distribution of the null values marked by the purple line and the calculated p-value, I **reject the null hypothesis**. I believe that the ratings of recipes with high protein levels have a lower average rating than recipes without high protein levels. 
+
+## Framing a Prediction Problem
+
+For this section of my project, I plan to predict the average rating of a recipe which would be considered a classification problem because if I rounded each recipe's average rating to the nearest integer, I could treat the average rating of a recipe as an ordinal categorical variable with [1, 2, 3, 4, 5] as possible values. To do this, I will construct a multi-class classifier since there are multiple options for my model to predict from.
+
+For my response variable, I chose a recipe's average rating because my overall research question is mostly concerned with how a recipe's rating is effected by other variables, therefore, I believe that this response variable would be a good representation of what I'm ultimately seeking to understand.
+
+In order to evaluate my model, I plan to use the f1 score because of the left-skewed nature of the `rating` column with most ratings being centered around 4 and 5 stars. I chose not to use the accuracy because if I did the model would likely be biased and misleading due to the imbalanced classes.
+
+The only information that I have access to in order to build this classifier is the columns within my `clean_recipes` data set. 
+
+## Baseline Model
+
+To start out, I split my data into training and test sets and then created a baseline model through the utilization of a random forest classifier. I used two features in this model: `prop_protein`, a quantitative numerical column, and `is_labeled_vegetarian`, a nominal categorical column. 
+
+To train the model efficiently, I utilized a StandardScalar transformer on the `prop_protein` column and I one-hot-encoded the values in the `is_labeled_vegetarian` column via a FunctionTransformer and a lambda function. 
+
+The F1 score of my model is 0.86 and the F1 scores of each of the rating categories are 0.17, 0.41, 0.46, 0.73, and 0.91 for rating scores of 1, 2, 3, 4, and 5 respectively. These scores tell me that my baseline model is better at predicting ratings of 4 and 5 compared to 1, 2, and 3. This is likely due to the left-skewed nature of the `rating` column since a vast majority of reviews fall within the 4 and 5 range, thus, increasing these categories' sample sizes and prediction accuracy. 
+
+## Final Model
+
+For my final model, I used the columns `is_labeled_vegetarian`, `minutes`, `calories`, `year` (a new column containing the year a recipe was submitted from the `submitted` column), and `prop_protein` as features.
+
+#### `is_labeled_vegetarian`
+
+This column of boolean values states whether a recipe is labeled as vegetarian. Including a column indicating whether a recipe is vegetarian provides valuable categorical information that can capture consumer preferences, as dietary choices often correlate with perceived recipe quality and ratings. This feature can help the model distinguish between rating patterns of vegetarian and non-vegetarian recipes, as these groups may appeal to different target audiences with distinct expectations. By incorporating this variable, the model gains an additional dimension of context about the recipe, which may improve its ability to predict average ratings accurately based on dietary restrictions or preferences. 
+
+#### `minutes`
+
+This column of float values states how long a recipe takes to make in minutes. Including the preparation time in minutes as a feature adds valuable context about the recipe's complexity and effort required, which can significantly influence user ratings. Recipes that take longer to make may be perceived as more elaborate or gourmet, potentially affecting their average ratings either positively or negatively depending on user preferences. By incorporating the cooking duration, the classifier model can better capture patterns and trends related to user satisfaction, thereby improving the accuracy of predicting average recipe ratings.
+
+#### `calories`
+
+This column of float values states how many calories are in a recipe. Including the calorie count as a feature provides insight into the recipe's nutritional profile, which could be a key factor influencing user preferences and average ratings. Recipes with higher or lower calorie counts may appeal to specific audiences, such as health-conscious individuals or those seeking indulgent meals, creating distinct rating patterns. By leveraging the calorie information, the classifier model can better capture relationships between nutritional content and user satisfaction, enhancing the accuracy of predicting recipe ratings.
+
+#### `year`
+
+This column states the year a recipe was posted to [food.com](https://www.food.com/). Including the year a recipe was posted provides temporal context, allowing the model to capture changes in culinary trends and user preferences over time that may influence ratings. Older recipes may have accumulated more reviews or different patterns of user feedback compared to newer ones, which can help the model identify temporal biases in ratings. By incorporating the posting year, the classifier can better understand how the age of a recipe affects its average rating, improving the accuracy of its predictions. 
+
+#### `prop_protein`
+
+This column states the percentage of calories that make up protein in a recipe. Including the proportion of protein in a recipe provides valuable nutritional information, which can influence user preferences and, consequently, the recipe's average rating. High-protein recipes may appeal to health-conscious users or those following specific dietary trends, leading to distinct rating patterns that the model can learn from. By leveraging the proportion of protein as a feature, the classifier can better capture the relationship between nutritional content and user satisfaction, improving the accuracy of its rating predictions.
+
+For my modeling algorithm, I opted to use a RandomForestClassifier and used a GridSearchCV to tune its hyperparameters of `max_depth` and `n_estimators`. I chose these hyperparameters to tune because decision trees tend to have high variance, thus, tuning these hyperparameters can help reduce the variance to not overfit the training set. I found the best combination of hyperparameters to be 40 for `max_depth` and 200 for `n_estimators`. 
+
+The F1 score of my final model is 0.92 which is a 0.06 increase from my baseline model. Additionally, the F1 scores of the rating categories are 0.33 for 1 star, 0.60 for 2 stars, 0.70 for 3 stars, 0.86 for 4 stars, and 0.95 for 5 stars which is a 0.16, 0.19, 0.24, 0.13, and 0.04 increase for each category respectively. 
+
+## Fairness Analysis
+
+For this final section, I split the recipes into two groups: high and low calorie recipes. I determined whether a recipe had a high or low amount of calories based on whether that recipe's calorie count exceeded or fell below the median calorie amount. I opted to use the median calorie amount over the mean calorie amount since a few outliers exist that would give a misleading average calorie amount. For the two groups, I decided to measure their precisions since I believe that it is more important to account for false positives over false negatives. In this context, a false positive would occur when the classifier incorrectly predicts the recipe to have a high/low average rating when in reality it has the opposite. This could be bad because the incorrect prediction could influence people to not select a recipe because of its low rating even though that recipe could be a perfectly healthy and delicious option. 
+
+**Null Hypothesis:** The model is fair. The precision for recipes with higher vs. lower calories is around the same, with any differences being due to random chance.
+
+**Alternative Hypothesis:** The model is unfair. The precision for lower-calorie recipes is lower than the precision for higher-calorie recipes.
+
+**Test Statistic:** Difference in precision (low calories - high calories)
+
+**Significance Level:** 0.05
+
+**Observed Statistic**: 0.00175
+
+**P-Value:** 0.232
+
+To run this permutation test, I created a new boolean column `is_high_calories` which states whether a recipe has an above median calorie count. I then shuffled this column 1000 times and compared the calculated test statistic for each shuffling to the observed test statistic. I then calculated the above p-value. Because the p-value is above the significance level that I set, **I fail to reject the null hypothesis** and believe that my model is fair. I conclude that the model’s precision for recipes with lower calories is not necessarily lower than its precision for recipes with higher calories.
