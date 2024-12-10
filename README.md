@@ -176,7 +176,7 @@ Moving on, I decided to assess the missingness of the `rating` column. I did thi
 
 **Significance Level:** 0.05
 
-I ran the permutation test for this relationship by first adding a column stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
+I ran the permutation test for this relationship by first adding a column boolean `rating_missing` stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
 
 <iframe
   src="assets/permutation_test_histogram_1.html"
@@ -200,3 +200,32 @@ As can be seen by the observed statistics' location on the distribution of the n
 **Observed Statistic:** 0.0181
 
 **Significance Level:** 0.05
+
+I ran the permutation test for this relationship by again using the column I created `rating_missing`. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
+
+<iframe
+  src="assets/permutation_test_histogram_2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+**P-Value:** 0.587
+
+As can be seen by the observed statistics' location on the distribution of the null values marked by the orange line and the calculated p-value, I **fail to reject the null hypothesis**. I believe that the missingness of the `rating` column is not MAR on the `n_ingredients` column. 
+
+## Hypothesis Testing
+
+Circling back to my original research question, my main goal with this research project is to discern if people rate high-protein and low-protein recipes on the same scale. To categorize a recipe as having high or low protein, I decided to add another boolean column `high_protein` stating whether a recipe's `prop_protein` value is higher than the average `prop_protein` value. With this new column, I conducted a permutation test with the following hypotheses and test statistic
+
+**Null Hypothesis:** Ratings of recipes are rated on the same set of standards and scale
+
+**Alternative Hypothesis:** Ratings of recipes with high protein levels have a lower average rating than recipes without high protein levels
+
+**Test Statistic:** The difference in average ratings of high protein recipes and low protein recipes.
+
+**Observed Statistic:** -0.0233
+
+**Significance Level:** 0.05
+
+I decided not to run a hypothesis test because I don't have any information on a population to be sampled from and instead decided to run a permutation test because I'm more interested in determining whether the two distributions of high and low protein come from the same population. My prediction is that recipes with a higher proportion of protein are rated lower than recipes with a lower proportion since I believe that people may be wary of any adverse health effects that could arise from consuming too many protein-rich meals leading them to rate the recipe lower. For the test statistic, I opted to use the difference in the mean of the `rating` column for each distribution since my alternative hypothesis is directional and I'm concerned with determining whether low protein recipes typically get rated higher. 
