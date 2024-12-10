@@ -154,7 +154,7 @@ Upon closer inspection of this pivot table, there seems to be a minor relationsh
 
 ## Assessment of Missingness
 
-Of the columns in `clean_recipes`, three of them contain missing data: `date`, `rating`, `review`. Due to this, I decided to assess the missingness of these columns
+Of the columns in `clean_recipes`, three of them contain missing data: `date`, `rating`, and `review`. Due to this, I decided to assess the missingness of these columns
 
 ### NMAR Analysis
 
@@ -176,7 +176,7 @@ Moving on, I decided to assess the missingness of the `rating` column. I did thi
 
 **Significance Level:** 0.05
 
-I ran the permutation test for this relationship by first adding a column boolean `rating_missing` stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
+I ran the permutation test for this relationship by first adding a boolean column `rating_missing` stating whether `rating` is missing. I then shuffled this column 1000 times and compared the calculated test statistic to the original observed statistic each time. The results are shown below.
 
 <iframe
   src="assets/permutation_test_histogram_1.html"
@@ -187,7 +187,7 @@ I ran the permutation test for this relationship by first adding a column boolea
 
 **P-Value:** 0.0
 
-As can be seen by the observed statistics' location on the distribution of the null values marked by the red line and the calculated p-value, I **reject the null hypothesis**. I believe that the missingness of the `rating` column is MAR on the `prop_protein` column. 
+As can be seen by the observed statistics' location on the distribution of the null values marked by the red line and the calculated p-value, **I reject the null hypothesis**. I believe that the missingness of the `rating` column is MAR on the `prop_protein` column. 
 
 #### Number of Ingredients and Rating
 
@@ -212,7 +212,7 @@ I ran the permutation test for this relationship by again using the column I cre
 
 **P-Value:** 0.587
 
-As can be seen by the observed statistics' location on the distribution of the null values marked by the orange line and the calculated p-value, I **fail to reject the null hypothesis**. I believe that the missingness of the `rating` column is not MAR on the `n_ingredients` column. 
+As can be seen by the observed statistics' location on the distribution of the null values marked by the orange line and the calculated p-value, **I fail to reject the null hypothesis**. I believe that the missingness of the `rating` column is not MAR on the `n_ingredients` column. 
 
 ## Hypothesis Testing
 
@@ -249,7 +249,7 @@ For this section of my project, I plan to predict the average rating of a recipe
 
 For my response variable, I chose a recipe's average rating because my overall research question is mostly concerned with how a recipe's rating is effected by other variables, therefore, I believe that this response variable would be a good representation of what I'm ultimately seeking to understand.
 
-In order to evaluate my model, I plan to use the f1 score because of the left-skewed nature of the `rating` column with most ratings being centered around 4 and 5 stars. I chose not to use the accuracy because if I did the model would likely be biased and misleading due to the imbalanced classes.
+In order to evaluate my model, I plan to use the F1 score because of the left-skewed nature of the `rating` column with most ratings being centered around 4 and 5 stars. I chose not to use the accuracy because if I did the model would likely be biased and misleading due to the imbalanced classes.
 
 The only information that I have access to in order to build this classifier is the columns within my `clean_recipes` data set. 
 
